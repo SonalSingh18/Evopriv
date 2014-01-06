@@ -6391,10 +6391,15 @@ public final class Settings {
          */
         public static final String QS_RUNNING_SERVICES_TOGGLE = "qs_running_services_toggle";
 
+        /**
+         * Force expanded notifications on all apps that support it.
+         * @hide
+         */
+        public static final String FORCE_EXPANDED_NOTIFICATIONS = "force_expanded_notifications";
 
         /**
          * Unlock keystore with fingerprint after reboot
-         * @hide 
+         * @hide
          */
         public static final String FP_UNLOCK_KEYSTORE = "fp_unlock_keystore";
 

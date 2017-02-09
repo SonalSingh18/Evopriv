@@ -983,4 +983,8 @@
     <string name="screen_state_off_delay_title">Screen-off actions delay</string>
     <string name="screen_state_on_delay_title">Screen-on actions delay</string>
 
+    <!-- Running Services button -->
+    <string name="qs_running_services_title">Running Services Icon</string>
+    <string name="qs_running_services_summary">Enable the running services icon in the footer</string>
+
 </resources>

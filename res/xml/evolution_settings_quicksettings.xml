@@ -164,6 +164,12 @@
             android:defaultValue="true" />
 
         <com.evolution.settings.preference.SystemSettingSwitchPreference
+            android:key="qs_running_services_toggle"
+            android:title="@string/qs_running_services_title"
+            android:summary="@string/qs_running_services_summary"
+            android:defaultValue="false" />
+
+        <com.evolution.settings.preference.SystemSettingSwitchPreference
             android:key="footer_text_show"
             android:title="@string/qs_footer_text_title"
             android:summary="@string/qs_footer_text_summary"

@@ -21,10 +21,12 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.SELinux;
 import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.provider.Settings;
@@ -38,11 +40,14 @@ import androidx.preference.SwitchPreference;
 
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.settings.R;
+import android.util.Log;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settingslib.search.SearchIndexable;
 
 import com.evolution.settings.preference.CustomSeekBarPreference;
+import com.evolution.settings.utils.SuShell;
+import com.evolution.settings.utils.SuTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,13 +56,20 @@ import java.util.List;
 public class MiscellaneousSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
+    private static final String TAG = "MiscellaneousSettings";
+
     private static final String KEY_PULSE_BRIGHTNESS = "ambient_pulse_brightness";
     private static final String KEY_DOZE_BRIGHTNESS = "ambient_doze_brightness";
     private static final String RINGTONE_FOCUS_MODE = "ringtone_focus_mode";
+    private static final String SELINUX_CATEGORY = "selinux";
+    private static final String PREF_SELINUX_MODE = "selinux_mode";
+    private static final String PREF_SELINUX_PERSISTENCE = "selinux_persistence";
 
     private CustomSeekBarPreference mPulseBrightness;
     private CustomSeekBarPreference mDozeBrightness;
     private ListPreference mHeadsetRingtoneFocus;
+    private SwitchPreference mSelinuxMode;
+    private SwitchPreference mSelinuxPersistence;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -91,6 +103,18 @@ public class MiscellaneousSettings extends SettingsPreferenceFragment implements
                 Settings.System.DOZE_BRIGHTNESS, defaultDoze);
         mDozeBrightness.setValue(value);
         mDozeBrightness.setOnPreferenceChangeListener(this);
+
+      // SELinux
+      Preference selinuxCategory = findPreference(SELINUX_CATEGORY);
+      mSelinuxMode = (SwitchPreference) findPreference(PREF_SELINUX_MODE);
+      mSelinuxMode.setChecked(SELinux.isSELinuxEnforced());
+      mSelinuxMode.setOnPreferenceChangeListener(this);
+
+      mSelinuxPersistence = (SwitchPreference) findPreference(PREF_SELINUX_PERSISTENCE);
+      mSelinuxPersistence.setOnPreferenceChangeListener(this);
+      mSelinuxPersistence.setChecked(getContext()
+          .getSharedPreferences("selinux_pref", Context.MODE_PRIVATE)
+          .contains(PREF_SELINUX_MODE));
     }
 
     @Override
@@ -113,6 +137,14 @@ public class MiscellaneousSettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getContentResolver(),
                     Settings.System.DOZE_BRIGHTNESS, value);
             return true;
+      } else if (preference == mSelinuxMode) {
+        boolean enabled = (Boolean) newValue;
+        new SwitchSelinuxTask(getActivity()).execute(enabled);
+        setSelinuxEnabled(enabled, mSelinuxPersistence.isChecked());
+        return true;
+      } else if (preference == mSelinuxPersistence) {
+        setSelinuxEnabled(mSelinuxMode.isChecked(), (Boolean) newValue);
+        return true;
         }
         return false;
     }
@@ -120,6 +152,45 @@ public class MiscellaneousSettings extends SettingsPreferenceFragment implements
     @Override
     public int getMetricsCategory() {
         return MetricsEvent.EVOLVER;
+    }
+
+    private void setSelinuxEnabled(boolean status, boolean persistent) {
+      SharedPreferences.Editor editor = getContext()
+          .getSharedPreferences("selinux_pref", Context.MODE_PRIVATE).edit();
+      if (persistent) {
+        editor.putBoolean(PREF_SELINUX_MODE, status);
+      } else {
+        editor.remove(PREF_SELINUX_MODE);
+      }
+      editor.apply();
+      mSelinuxMode.setChecked(status);
+    }
+
+    private class SwitchSelinuxTask extends SuTask<Boolean> {
+      public SwitchSelinuxTask(Context context) {
+        super(context);
+      }
+      @Override
+      protected void sudoInBackground(Boolean... params) throws SuShell.SuDeniedException {
+        if (params.length != 1) {
+          Log.e(TAG, "SwitchSelinuxTask: invalid params count");
+          return;
+        }
+        if (params[0]) {
+          SuShell.runWithSuCheck("setenforce 1");
+        } else {
+          SuShell.runWithSuCheck("setenforce 0");
+        }
+    }
+
+      @Override
+      protected void onPostExecute(Boolean result) {
+        super.onPostExecute(result);
+        if (!result) {
+          // Did not work, so restore actual value
+          setSelinuxEnabled(SELinux.isSELinuxEnforced(), mSelinuxPersistence.isChecked());
+        }
+      }
     }
 
     /**

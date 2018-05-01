@@ -136,6 +136,13 @@ public class ActionUtils {
         FireActions.toggleCameraFlash();
     }
 
+    public static void toggleCameraFlashOn() {
+        FireActions.toggleCameraFlashOn();
+    }
+    public static void toggleCameraFlashOff() {
+        FireActions.toggleCameraFlashOff();
+    }
+
     // Launch a custom app/activity
     public static void launchApp(Context context, boolean leftEdgeApp, boolean isVerticalSwipe) {
         Intent intent = null;
@@ -231,6 +238,28 @@ public class ActionUtils {
             if (service != null) {
                 try {
                     service.toggleCameraFlash();
+                } catch (RemoteException e) {
+                    // do nothing.
+                }
+            }
+        }
+
+        public static void toggleCameraFlashOn(){
+            IStatusBarService service = getStatusBarService();
+            if (service != null) {
+                try {
+                    service.toggleCameraFlashOn();
+                } catch (RemoteException e) {
+                    // do nothing.
+                }
+            }
+        }
+
+        public static void toggleCameraFlashOff(){
+            IStatusBarService service = getStatusBarService();
+            if (service != null) {
+                try {
+                    service.toggleCameraFlashOff();
                 } catch (RemoteException e) {
                     // do nothing.
                 }

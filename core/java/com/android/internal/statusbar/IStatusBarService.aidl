@@ -163,6 +163,9 @@ interface IStatusBarService
     void toggleCameraFlashState(boolean enable);
     void killForegroundApp();
 
+    void toggleCameraFlashOn();
+    void toggleCameraFlashOff();
+
     /**
      * Starts the default assistant app.
      */
@@ -172,4 +175,5 @@ interface IStatusBarService
      * Used to block or unblock usage of gestural navigation
      */
     void setBlockedGesturalNavigation(boolean blocked);
+
 }

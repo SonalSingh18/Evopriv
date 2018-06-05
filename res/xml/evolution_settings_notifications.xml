@@ -221,5 +221,18 @@
             android:min="0"
             settings:interval="1"
             android:dependency="pulse_ambient_light" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/notification_flash_title" >
+
+            <com.evolution.settings.preference.SystemSettingListPreference 
+            android:key="flashlight_on_call"
+            android:title="@string/flashlight_on_call_title"
+            android:entries="@array/flashlight_on_call_entries"
+            android:entryValues="@array/flashlight_on_call_values"
+            android:defaultValue="0" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

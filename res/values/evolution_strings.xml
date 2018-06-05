@@ -1160,4 +1160,12 @@
     <string name="qs_system_info_battery_temp">Battery temperature</string>
     <string name="qs_system_info_gpu_clock">GPU frequency</string>
     <string name="qs_system_info_gpu_busy">GPU utilization</string>
+
+    <!-- Pulse flashlight on calls -->
+    <string name="notification_flash_title">Flashlight notifications</string>
+    <string name="flashlight_on_call_title">Pulse flash on incoming call</string>
+    <string name="flashlight_on_call_disabled">Disabled</string>
+    <string name="flashlight_on_call_not_dnd">Only in ringer mode</string>
+    <string name="flashlight_on_call_dnd">Only in DND mode</string>
+    <string name="flashlight_on_call_always">Always</string>
 </resources>

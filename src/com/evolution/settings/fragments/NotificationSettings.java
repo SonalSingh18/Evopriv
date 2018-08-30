@@ -67,6 +67,7 @@ public class NotificationSettings extends SettingsPreferenceFragment implements
     private static final String NOTIFICATION_PULSE_DURATION = "notification_pulse_duration";
     private static final String NOTIFICATION_PULSE_REPEATS = "notification_pulse_repeats";
     private static final String PULSE_COLOR_MODE_PREF = "ambient_notification_light_color_mode";
+    private static final String FLASH_ON_CALL_WAITING_DELAY = "flash_on_call_waiting_delay";
 
     private ColorPickerPreference mEdgeLightColorPreference;
     private CustomSeekBarPreference mEdgeLightDurationPreference;
@@ -77,6 +78,7 @@ public class NotificationSettings extends SettingsPreferenceFragment implements
     private PreferenceCategory mLedCategory;
     private SystemSettingSwitchPreference mAmbientPref;
     private SystemSettingSwitchPreference mNotificationHeader;
+    private CustomSeekBarPreference mFlashOnCallWaitingDelay;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -168,12 +170,20 @@ public class NotificationSettings extends SettingsPreferenceFragment implements
             mEdgeLightColorPreference.setSummary(edgeLightColorHex);
         }
         mEdgeLightColorPreference.setOnPreferenceChangeListener(this);
+
+        mFlashOnCallWaitingDelay = (CustomSeekBarPreference) findPreference(FLASH_ON_CALL_WAITING_DELAY);
+        mFlashOnCallWaitingDelay.setValue(Settings.System.getInt(resolver, Settings.System.FLASH_ON_CALLWAITING_DELAY, 200));
+        mFlashOnCallWaitingDelay.setOnPreferenceChangeListener(this);
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        ContentResolver resolver = getActivity().getContentResolver();
-        if (preference == mNotificationHeader) {
+        final ContentResolver resolver = getActivity().getContentResolver();
+        if (preference == mFlashOnCallWaitingDelay) {
+            int val = (Integer) newValue;
+            Settings.System.putInt(getContentResolver(), Settings.System.FLASH_ON_CALLWAITING_DELAY, val);
+            return true;
+        } else if (preference == mNotificationHeader) {
             boolean value = (Boolean) newValue;
             Settings.System.putInt(resolver,
                     Settings.System.NOTIFICATION_HEADERS, value ? 1 : 0);

@@ -1183,4 +1183,6 @@
     <string name="flashlight_on_call_not_dnd">Only in ringer mode</string>
     <string name="flashlight_on_call_dnd">Only in DND mode</string>
     <string name="flashlight_on_call_always">Always</string>
+    <string name="flash_on_call_title">Pulse flash on waiting call</string>
+    <string name="flash_on_call_delay_title">Flash pulse rate</string>
 </resources>

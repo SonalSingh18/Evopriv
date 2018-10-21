@@ -56,6 +56,8 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements
     private static final String FINGERPRINT_ERROR_VIB = "fingerprint_error_vib";
     private static final String LOCK_CLOCK_FONTS = "lock_clock_fonts";
     private static final String LOCK_DATE_FONTS = "lock_date_fonts";
+    private static final String CLOCK_FONT_SIZE = "lockclock_font_size";
+    private static final String DATE_FONT_SIZE  = "lockdate_font_size";
     private static final String FINGERPRINT_VIB = "fingerprint_success_vib";
     private static final String FOD_ANIMATION_CATEGORY = "fod_animations";
     private static final String FOD_ICON_PICKER_CATEGORY = "fod_icon_picker";
@@ -63,6 +65,8 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements
 
     private ListPreference mLockClockFonts;
     private ListPreference mLockDateFonts;
+    private CustomSeekBarPreference mClockFontSize;
+    private CustomSeekBarPreference mDateFontSize;
     private FingerprintManager mFingerprintManager;
     private PreferenceCategory mFODIconPickerCategory;
     private SwitchPreference mFingerprintErrorVib;
@@ -97,6 +101,18 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements
                 getContentResolver(), Settings.System.LOCK_DATE_FONTS, 32)));
         mLockDateFonts.setSummary(mLockDateFonts.getEntry());
         mLockDateFonts.setOnPreferenceChangeListener(this);
+
+        // Lock Clock Size
+        mClockFontSize = (CustomSeekBarPreference) findPreference(CLOCK_FONT_SIZE);
+        mClockFontSize.setValue(Settings.System.getInt(getContentResolver(),
+                Settings.System.LOCKCLOCK_FONT_SIZE, 78));
+        mClockFontSize.setOnPreferenceChangeListener(this);
+
+        // Lock Date Size
+        mDateFontSize = (CustomSeekBarPreference) findPreference(DATE_FONT_SIZE);
+        mDateFontSize.setValue(Settings.System.getInt(getContentResolver(),
+                Settings.System.LOCKDATE_FONT_SIZE, 18));
+        mDateFontSize.setOnPreferenceChangeListener(this);
 
         mFingerprintManager = (FingerprintManager) getActivity().getSystemService(Context.FINGERPRINT_SERVICE);
         mFingerprintVib = (SwitchPreference) findPreference(FINGERPRINT_VIB);
@@ -201,6 +217,16 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements
                     Integer.valueOf((String) newValue));
             mLockDateFonts.setValue(String.valueOf(newValue));
             mLockDateFonts.setSummary(mLockDateFonts.getEntry());
+            return true;
+        } else if (preference == mClockFontSize) {
+            int top = (Integer) newValue;
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.LOCKCLOCK_FONT_SIZE, top*1);
+            return true;
+        } else if (preference == mDateFontSize) {
+            int top = (Integer) newValue;
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.LOCKDATE_FONT_SIZE, top*1);
             return true;
         } else if (preference == mFingerprintVib) {
             boolean value = (Boolean) newValue;

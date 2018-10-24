@@ -58,6 +58,8 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements
     private static final String LOCK_DATE_FONTS = "lock_date_fonts";
     private static final String CLOCK_FONT_SIZE = "lockclock_font_size";
     private static final String DATE_FONT_SIZE  = "lockdate_font_size";
+    private static final String LOCK_OWNERINFO_FONTS = "lock_ownerinfo_fonts";
+    private static final String LOCKOWNER_FONT_SIZE = "lockowner_font_size";
     private static final String FINGERPRINT_VIB = "fingerprint_success_vib";
     private static final String FOD_ANIMATION_CATEGORY = "fod_animations";
     private static final String FOD_ICON_PICKER_CATEGORY = "fod_icon_picker";
@@ -65,8 +67,10 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements
 
     private ListPreference mLockClockFonts;
     private ListPreference mLockDateFonts;
+    private ListPreference mLockOwnerInfoFonts;
     private CustomSeekBarPreference mClockFontSize;
     private CustomSeekBarPreference mDateFontSize;
+    private CustomSeekBarPreference mOwnerInfoFontSize;
     private FingerprintManager mFingerprintManager;
     private PreferenceCategory mFODIconPickerCategory;
     private SwitchPreference mFingerprintErrorVib;
@@ -113,6 +117,19 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements
         mDateFontSize.setValue(Settings.System.getInt(getContentResolver(),
                 Settings.System.LOCKDATE_FONT_SIZE, 18));
         mDateFontSize.setOnPreferenceChangeListener(this);
+
+        // Lockscren OwnerInfo Fonts
+        mLockOwnerInfoFonts = (ListPreference) findPreference(LOCK_OWNERINFO_FONTS);
+        mLockOwnerInfoFonts.setValue(String.valueOf(Settings.System.getInt(
+                getContentResolver(), Settings.System.LOCK_OWNERINFO_FONTS, 0)));
+        mLockOwnerInfoFonts.setSummary(mLockOwnerInfoFonts.getEntry());
+        mLockOwnerInfoFonts.setOnPreferenceChangeListener(this);
+
+        // Lockscren OwnerInfo Size
+        mOwnerInfoFontSize = (CustomSeekBarPreference) findPreference(LOCKOWNER_FONT_SIZE);
+        mOwnerInfoFontSize.setValue(Settings.System.getInt(getContentResolver(),
+                Settings.System.LOCKOWNER_FONT_SIZE,21));
+        mOwnerInfoFontSize.setOnPreferenceChangeListener(this);
 
         mFingerprintManager = (FingerprintManager) getActivity().getSystemService(Context.FINGERPRINT_SERVICE);
         mFingerprintVib = (SwitchPreference) findPreference(FINGERPRINT_VIB);
@@ -227,6 +244,17 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements
             int top = (Integer) newValue;
             Settings.System.putInt(getContentResolver(),
                     Settings.System.LOCKDATE_FONT_SIZE, top*1);
+            return true;
+       } else if (preference == mLockOwnerInfoFonts) {
+            Settings.System.putInt(getContentResolver(), Settings.System.LOCK_OWNERINFO_FONTS,
+                    Integer.valueOf((String) newValue));
+            mLockOwnerInfoFonts.setValue(String.valueOf(newValue));
+            mLockOwnerInfoFonts.setSummary(mLockOwnerInfoFonts.getEntry());
+            return true;
+        } else if (preference == mOwnerInfoFontSize) {
+            int top = (Integer) newValue;
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.LOCKOWNER_FONT_SIZE, top*1);
             return true;
         } else if (preference == mFingerprintVib) {
             boolean value = (Boolean) newValue;

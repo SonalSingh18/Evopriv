@@ -112,6 +112,56 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:key="lockscreen_ui"
+        android:title="@string/lockscreen_ui_title">
+
+    <ListPreference
+        android:key="lock_clock_fonts"
+        android:title="@string/lock_clock_font_title"
+        android:dialogTitle="@string/lock_clock_font_dialog_title"
+        android:entries="@array/lock_clock_fonts_entries"
+        android:entryValues="@array/lock_clock_fonts_values"
+        android:summary="%s"
+        android:defaultValue="34"
+        android:persistent="false" />
+
+    <ListPreference
+        android:key="lock_date_fonts"
+        android:title="@string/lock_date_font_title"
+        android:dialogTitle="@string/lock_date_font_dialog_title"
+        android:entries="@array/lock_clock_fonts_entries"
+        android:entryValues="@array/lock_clock_fonts_values"
+        android:summary="%s"
+        android:defaultValue="32"
+        android:persistent="false" />
+
+    <com.evolution.settings.preference.CustomSeekBarPreference
+        android:key="lockclock_font_size"
+        android:title="@string/lockclock_font_size_title"
+        android:max="101"
+        settings:min="65"
+        settings:units="dp"
+        android:persistent="false"
+        android:defaultValue="78" />
+
+    <com.evolution.settings.preference.CustomSeekBarPreference
+        android:key="lockdate_font_size"
+        android:title="@string/lockdate_font_size_title"
+        android:max="25"
+        settings:min="10"
+        settings:units="dp"
+        android:defaultValue="18"
+        android:persistent="false" />
+
+    <PreferenceScreen
+        android:key="lockscreen_colors"
+        android:title="@string/lockscreen_colors"
+        android:summary="@string/lockscreen_colors_summary"
+        android:fragment="com.evolution.settings.fragments.LockColors" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:key="lockscreen_info_category"
         android:title="@string/lockscreen_info_category_title">
 
@@ -183,50 +233,6 @@
             settings:interval="5"
             android:defaultValue="100"
             android:dependency="lockscreen_media_metadata" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:key="lockscreen_ui"
-        android:title="@string/lockscreen_ui_title">
-
-    <ListPreference
-        android:key="lock_clock_fonts"
-        android:title="@string/lock_clock_font_title"
-        android:dialogTitle="@string/lock_clock_font_dialog_title"
-        android:entries="@array/lock_clock_fonts_entries"
-        android:entryValues="@array/lock_clock_fonts_values"
-        android:summary="%s"
-        android:defaultValue="34"
-        android:persistent="false" />
-
-    <ListPreference
-        android:key="lock_date_fonts"
-        android:title="@string/lock_date_font_title"
-        android:dialogTitle="@string/lock_date_font_dialog_title"
-        android:entries="@array/lock_clock_fonts_entries"
-        android:entryValues="@array/lock_clock_fonts_values"
-        android:summary="%s"
-        android:defaultValue="32"
-        android:persistent="false" />
-
-    <com.evolution.settings.preference.CustomSeekBarPreference
-        android:key="lockclock_font_size"
-        android:title="@string/lockclock_font_size_title"
-        android:max="101"
-        settings:min="65"
-        settings:units="dp"
-        android:persistent="false"
-        android:defaultValue="78" />
-
-    <com.evolution.settings.preference.CustomSeekBarPreference
-        android:key="lockdate_font_size"
-        android:title="@string/lockdate_font_size_title"
-        android:max="25"
-        settings:min="10"
-        settings:units="dp"
-        android:defaultValue="18"
-        android:persistent="false" />
 
     </PreferenceCategory>
 

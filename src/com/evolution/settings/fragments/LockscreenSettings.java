@@ -55,8 +55,10 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements
     private static final String AOD_SCHEDULE_KEY = "always_on_display_schedule";
     private static final String FINGERPRINT_ERROR_VIB = "fingerprint_error_vib";
     private static final String LOCK_CLOCK_FONTS = "lock_clock_fonts";
+    private static final String CUSTOM_TEXT_CLOCK_FONTS = "custom_text_clock_fonts";
     private static final String LOCK_DATE_FONTS = "lock_date_fonts";
     private static final String CLOCK_FONT_SIZE = "lockclock_font_size";
+    private static final String CUSTOM_TEXT_CLOCK_FONT_SIZE  = "custom_text_clock_font_size";
     private static final String DATE_FONT_SIZE  = "lockdate_font_size";
     private static final String LOCK_OWNERINFO_FONTS = "lock_ownerinfo_fonts";
     private static final String LOCKOWNER_FONT_SIZE = "lockowner_font_size";
@@ -66,9 +68,11 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements
     private static final String FP_KEYSTORE = "fp_unlock_keystore";
 
     private ListPreference mLockClockFonts;
+    private ListPreference mTextClockFonts;
     private ListPreference mLockDateFonts;
     private ListPreference mLockOwnerInfoFonts;
     private CustomSeekBarPreference mClockFontSize;
+    private CustomSeekBarPreference mCustomTextClockFontSize;
     private CustomSeekBarPreference mDateFontSize;
     private CustomSeekBarPreference mOwnerInfoFontSize;
     private FingerprintManager mFingerprintManager;
@@ -99,6 +103,13 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements
         mLockClockFonts.setSummary(mLockClockFonts.getEntry());
         mLockClockFonts.setOnPreferenceChangeListener(this);
 
+        // Lockscreen Text Clock Fonts
+        mTextClockFonts = (ListPreference) findPreference(CUSTOM_TEXT_CLOCK_FONTS);
+        mTextClockFonts.setValue(String.valueOf(Settings.System.getInt(
+                getContentResolver(), Settings.System.CUSTOM_TEXT_CLOCK_FONTS, 32)));
+        mTextClockFonts.setSummary(mTextClockFonts.getEntry());
+        mTextClockFonts.setOnPreferenceChangeListener(this);
+
         // Lockscreen Date Fonts
         mLockDateFonts = (ListPreference) findPreference(LOCK_DATE_FONTS);
         mLockDateFonts.setValue(String.valueOf(Settings.System.getInt(
@@ -111,6 +122,12 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements
         mClockFontSize.setValue(Settings.System.getInt(getContentResolver(),
                 Settings.System.LOCKCLOCK_FONT_SIZE, 78));
         mClockFontSize.setOnPreferenceChangeListener(this);
+
+        // Custom Text Clock Size
+        mCustomTextClockFontSize = (CustomSeekBarPreference) findPreference(CUSTOM_TEXT_CLOCK_FONT_SIZE);
+        mCustomTextClockFontSize.setValue(Settings.System.getInt(getContentResolver(),
+                Settings.System.CUSTOM_TEXT_CLOCK_FONT_SIZE, 40));
+        mCustomTextClockFontSize.setOnPreferenceChangeListener(this);
 
         // Lock Date Size
         mDateFontSize = (CustomSeekBarPreference) findPreference(DATE_FONT_SIZE);
@@ -229,6 +246,12 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements
             mLockClockFonts.setValue(String.valueOf(newValue));
             mLockClockFonts.setSummary(mLockClockFonts.getEntry());
             return true;
+        } else if (preference == mTextClockFonts) {
+            Settings.System.putInt(getContentResolver(), Settings.System.CUSTOM_TEXT_CLOCK_FONTS,
+                    Integer.valueOf((String) newValue));
+            mTextClockFonts.setValue(String.valueOf(newValue));
+            mTextClockFonts.setSummary(mTextClockFonts.getEntry());
+            return true;
         } else if (preference == mLockDateFonts) {
             Settings.System.putInt(getContentResolver(), Settings.System.LOCK_DATE_FONTS,
                     Integer.valueOf((String) newValue));
@@ -239,6 +262,11 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements
             int top = (Integer) newValue;
             Settings.System.putInt(getContentResolver(),
                     Settings.System.LOCKCLOCK_FONT_SIZE, top*1);
+            return true;
+        } else if (preference == mCustomTextClockFontSize) {
+            int top = (Integer) newValue;
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.CUSTOM_TEXT_CLOCK_FONT_SIZE, top*1);
             return true;
         } else if (preference == mDateFontSize) {
             int top = (Integer) newValue;

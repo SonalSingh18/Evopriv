@@ -6097,6 +6097,11 @@ public final class Settings {
         public static final String GLOBAL_ACTIONS_USERS_CHOICE = "global_actions_users_choice";
 
         /**
+         * Shows system info in QS OFF:0, CPU temp:1, battery temp:2, gpu freq: 3, gpu load: 4
+         */
+        public static final String QS_SYSTEM_INFO = "qs_system_info";
+
+        /**
          * Force show navigation bar setting.
          * @hide
          */

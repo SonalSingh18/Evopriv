@@ -1152,4 +1152,12 @@
     <string name="status_bar_carrier_color">Carrier label color</string>
     <string name="status_bar_carrier_size">Carrier label size</string>
     <string name="status_bar_carrier_font_style_title">Carrier Label Font</string>
+
+    <!-- QS SystemInfo -->
+    <string name="qs_system_info_title">System Info</string>
+    <string name="qs_system_info_off">Off</string> 
+    <string name="qs_system_info_cpu_temp">CPU temperature</string> 
+    <string name="qs_system_info_battery_temp">Battery temperature</string>
+    <string name="qs_system_info_gpu_clock">GPU frequency</string>
+    <string name="qs_system_info_gpu_busy">GPU utilization</string>
 </resources>

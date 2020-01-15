@@ -679,6 +679,7 @@ public final class PowerManagerService extends SystemService
     }
 
     // Adaptive charging
+    private boolean mSmartFeaturesAvailable;
     private boolean mAdaptiveChargingEnabled;
     private boolean mAdaptiveChargingTemperatureEnabled;
     private boolean mAdaptiveChargingResetStats;
@@ -1387,6 +1388,8 @@ public final class PowerManagerService extends SystemService
                     .newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "ProximityWakeLock");
         }
         // Adaptive charging
+        mSmartFeaturesAvailable = resources.getBoolean(
+                com.android.internal.R.bool.config_supportAdaptiveCharging);
         mAdaptiveChargingCutoffLevelConfig = resources.getInteger(
                 com.android.internal.R.integer.config_adaptiveChargingCutoffLevel);
         mAdaptiveChargingResumeLevelConfig = resources.getInteger(
@@ -2336,6 +2339,7 @@ public final class PowerManagerService extends SystemService
      * Suspend or resume charging based on the current Adaptive Charging settings
      */
     private void updateAdaptiveChargingStatus() {
+        if (!mSmartFeaturesAvailable) return;
         if (mPowerInputSuspended) {
             boolean resumeByAdaptiveCharging = !mAdaptiveChargingEnabled || (mAdaptiveChargingEnabled && (mBatteryLevel < mAdaptiveChargingCutoffLevel &&
                 mBatteryLevel <= mAdaptiveChargingResumeLevel));

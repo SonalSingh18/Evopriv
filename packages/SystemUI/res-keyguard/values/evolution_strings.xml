@@ -22,6 +22,7 @@
     <string name="clock_title_samsung_accent" translatable="false">Samsung (colored)</string>
     <string name="clock_title_mnml_box" translatable="false">MNML\'s Box</string>
     <string name="clock_title_mnml_minimal" translatable="false">MNML\'s Minimal</string>
+    <string name="clock_title_sneeky" translatable="false">Sneeky</string>
 
     <!-- Spectrum Analog clock -->
     <string name="clock_title_spectrum" translatable="false">Spectrum</string>

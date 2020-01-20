@@ -174,6 +174,7 @@ public final class ClockManager {
         addBuiltinClock(() -> new StickerTagClockController(res, layoutInflater, colorExtractor, context));
         addBuiltinClock(() -> new TuxClockController(res, layoutInflater, colorExtractor));
         addBuiltinClock(() -> new LineageClockController(res, layoutInflater, colorExtractor));
+        addBuiltinClock(() -> new SneekyClockController(res, layoutInflater, colorExtractor));
 
         // Store the size of the display for generation of clock preview.
         DisplayMetrics dm = res.getDisplayMetrics();

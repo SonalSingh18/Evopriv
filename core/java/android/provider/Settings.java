@@ -5060,7 +5060,19 @@ public final class Settings {
          */
         public static final String TORCH_LONG_PRESS_POWER_TIMEOUT = "torch_long_press_power_timeout";
 
-        /**
+	/**
+         * Clock font style  QS
+         * @hide
+         */
+        public static final String QS_HEADER_CLOCK_FONT_STYLE = "qs_header_clock_font_style";
+
+	/**
+         * Clock font size QS
+         * @hide
+         */
+        public static final String QS_HEADER_CLOCK_SIZE = "qs_header_clock_size";
+
+       /**
          * Whether to use the custom quick unlock screen control
          * @hide
          */

@@ -5752,6 +5752,11 @@ public final class Settings {
         /**
          * @hide
          */
+        public static final String SCREEN_STATE_THREEG = "screen_state_threeg";
+
+        /**
+         * @hide
+         */
         public static final String SCREEN_STATE_GPS = "screen_state_gps";
 
         /**

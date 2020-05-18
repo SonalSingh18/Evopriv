@@ -46,6 +46,7 @@ import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settingslib.search.SearchIndexable;
 
 import com.evolution.settings.preference.CustomSeekBarPreference;
+import com.evolution.settings.Utils;
 import com.evolution.settings.utils.SuShell;
 import com.evolution.settings.utils.SuTask;
 
@@ -62,6 +63,7 @@ public class MiscellaneousSettings extends SettingsPreferenceFragment implements
     private static final String KEY_DOZE_BRIGHTNESS = "ambient_doze_brightness";
     private static final String RINGTONE_FOCUS_MODE = "ringtone_focus_mode";
     private static final String SELINUX_CATEGORY = "selinux";
+    private static final String SELINUX_EXPLANATION = "selinux_explanation";
     private static final String PREF_SELINUX_MODE = "selinux_mode";
     private static final String PREF_SELINUX_PERSISTENCE = "selinux_persistence";
 
@@ -106,15 +108,27 @@ public class MiscellaneousSettings extends SettingsPreferenceFragment implements
 
       // SELinux
       Preference selinuxCategory = findPreference(SELINUX_CATEGORY);
+      Preference selinuxExp = findPreference(SELINUX_EXPLANATION);
       mSelinuxMode = (SwitchPreference) findPreference(PREF_SELINUX_MODE);
       mSelinuxMode.setChecked(SELinux.isSELinuxEnforced());
-      mSelinuxMode.setOnPreferenceChangeListener(this);
 
       mSelinuxPersistence = (SwitchPreference) findPreference(PREF_SELINUX_PERSISTENCE);
-      mSelinuxPersistence.setOnPreferenceChangeListener(this);
       mSelinuxPersistence.setChecked(getContext()
           .getSharedPreferences("selinux_pref", Context.MODE_PRIVATE)
           .contains(PREF_SELINUX_MODE));
+
+      // Disabling root required switches if unrooted and letting the user know
+      if (!Utils.isRooted(getContext())) {
+        Log.e(TAG, "Root not found");
+        mSelinuxMode.setEnabled(false);
+        mSelinuxPersistence.setEnabled(false);
+        mSelinuxPersistence.setChecked(false);
+        selinuxExp.setSummary(selinuxExp.getSummary() + "\n" +
+            getResources().getString(R.string.selinux_unrooted_summary));
+      } else {
+        mSelinuxPersistence.setOnPreferenceChangeListener(this);
+        mSelinuxMode.setOnPreferenceChangeListener(this);
+      }
     }
 
     @Override

@@ -2881,4 +2881,7 @@
     <!-- Tux clock -->
     <string name="clock_title_tux" translatable="false">Tux</string>
 
+    <!-- Lineage clock -->
+    <string name="clock_title_lineage" translatable="false">LineageOS</string>
+
 </resources>

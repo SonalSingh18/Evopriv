@@ -262,6 +262,6 @@ public class SystemSettingsValidators {
         VALIDATORS.put(System.FP_WAKE_UNLOCK, BOOLEAN_VALIDATOR);
         VALIDATORS.put(System.LOCKSCREEN_BATTERY_INFO, BOOLEAN_VALIDATOR);
         VALIDATORS.put(System.QS_SYSTEM_INFO, ANY_INTEGER_VALIDATOR);
-        VALIDATORS.put(System.FLASHLIGHT_ON_CALL, new InclusiveIntegerRangeValidator(0, 3));
+        VALIDATORS.put(System.FLASHLIGHT_ON_CALL, new InclusiveIntegerRangeValidator(0, 4));
     }
 }

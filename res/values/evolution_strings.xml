@@ -1259,4 +1259,10 @@
     <string name="ambient_swipe_title">Ambient display swipe</string>
     <string name="ambient_swipe_summary">Enable up or down swipe on Ambient Display\nNote: requires SystemUI restart.</string>
 
+    <!-- QS Battery Location -->
+    <string name="qs_battery_header_title">QS Battery Location</string>
+    <string name="qs_battery_off">Off</string>
+    <string name="qs_battery_on_signal">Qs Signal Group</string>
+    <string name="qs_battery_on_header">Qs Header</string>
+
 </resources>

@@ -104,5 +104,7 @@ public class SystemSettings {
         Settings.System.FP_WAKE_UNLOCK,
         Settings.System.LOCKSCREEN_BATTERY_INFO,
         Settings.System.FLASHLIGHT_ON_CALL,
+        Settings.System.FLASHLIGHT_ON_CALL_IGNORE_DND,
+        Settings.System.FLASHLIGHT_ON_CALL_RATE,
     };
 }

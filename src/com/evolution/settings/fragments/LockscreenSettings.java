@@ -29,6 +29,7 @@ import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.os.UserHandle;
 import android.provider.Settings;
+import com.android.internal.widget.LockPatternUtils;
 
 import androidx.preference.SwitchPreference;
 import androidx.preference.ListPreference;
@@ -45,6 +46,7 @@ import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.fuelgauge.PowerUsageSummary;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settingslib.search.SearchIndexable;
+import com.evolution.settings.preference.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +65,7 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements
     private static final String FOD_ANIMATION_CATEGORY = "fod_animations";
     private static final String FOD_ICON_PICKER_CATEGORY = "fod_icon_picker";
     private static final String KEY_LOCKSCREEN_BLUR = "lockscreen_blur";
+    private static final String FP_KEYSTORE = "fp_unlock_keystore";
 
     private FingerprintManager mFingerprintManager;
     private PreferenceCategory mFODIconPickerCategory;
@@ -70,6 +73,7 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements
     private SwitchPreference mFingerprintVib;
     private SystemSettingListPreference mBatteryTempUnit;
     private SystemSettingSeekBarPreference mLockscreenBlur;
+    private SystemSettingSwitchPreference mFingerprintUnlock;
 
     static final int MODE_DISABLED = 0;
     static final int MODE_NIGHT = 1;
@@ -178,6 +182,18 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements
             case MODE_MIXED_SUNRISE:
                 mAODPref.setSummary(R.string.always_on_display_schedule_mixed_sunrise);
                 break;
+        }
+
+        mFingerprintUnlock = (SystemSettingSwitchPreference) findPreference(FP_KEYSTORE);
+
+        if (mFingerprintUnlock != null) {
+           if (LockPatternUtils.isDeviceEncryptionEnabled()) {
+               mFingerprintUnlock.setEnabled(false);
+               mFingerprintUnlock.setSummary(R.string.fp_encrypt_warning);
+            } else {
+               mFingerprintUnlock.setEnabled(true);
+               mFingerprintUnlock.setSummary(R.string.fp_unlock_keystore_summary);
+            }
         }
     }
 

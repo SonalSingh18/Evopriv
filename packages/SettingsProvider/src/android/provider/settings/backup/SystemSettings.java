@@ -93,6 +93,7 @@ public class SystemSettings {
         Settings.System.VOLUME_BUTTON_MUSIC_CONTROL,
         Settings.System.VOLUME_KEY_CURSOR_CONTROL,
         Settings.System.LOCKSCREEN_MEDIA_METADATA,
+        Settings.System.CENTER_NOTIFICATION_HEADERS,
         Settings.System.RINGTONE_VIBRATION_PATTERN,
         Settings.System.CUSTOM_RINGTONE_VIBRATION_PATTERN,
         Settings.System.COLOR_BUCKET_OVERLAY,

@@ -5212,6 +5212,12 @@ public final class Settings {
         public static final String VOLUME_BUTTON_MUSIC_CONTROL = "volume_button_music_control";
 
         /**
+         * whether to show center notification headers
+         * @hide
+         */
+        public static final String CENTER_NOTIFICATION_HEADERS = "center_notification_headers";
+
+        /**
          * Whether to pulse ambient on new music tracks
          *
          * @hide
@@ -6873,6 +6879,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(FP_WAKE_UNLOCK);
             PRIVATE_SETTINGS.add(LOCKSCREEN_BATTERY_INFO);
             PRIVATE_SETTINGS.add(FP_UNLOCK_KEYSTORE);
+            PRIVATE_SETTINGS.add(CENTER_NOTIFICATION_HEADERS);
         }
 
         /**

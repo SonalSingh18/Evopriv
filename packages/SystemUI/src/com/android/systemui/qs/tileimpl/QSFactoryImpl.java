@@ -66,6 +66,7 @@ import com.android.systemui.qs.tiles.RotationLockTile;
 import com.android.systemui.qs.tiles.ScreenshotTile;
 import com.android.systemui.qs.tiles.ScreenRecordTile;
 import com.android.systemui.qs.tiles.SleepScreenTile;
+import com.android.systemui.qs.tiles.SmartChargeTile;
 import com.android.systemui.qs.tiles.SoundTile;
 import com.android.systemui.qs.tiles.SleepModeTile;
 import com.android.systemui.qs.tiles.SoundSearchTile;
@@ -141,6 +142,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<OnTheGoTile> mOnTheGoTileProvider;
     private final Provider<SleepModeTile> mSleepModeTileProvider;
     private final Provider<LteTile> mLteTileProvider;
+    private final Provider<SmartChargeTile> mSmartChargeTileProvider;
 
     private final Lazy<QSHost> mQsHostLazy;
 
@@ -196,7 +198,9 @@ public class QSFactoryImpl implements QSFactory {
             Provider<VpnTile> vpnTileProvider,
             Provider<OnTheGoTile> onTheGoTileProvider,
             Provider<SleepModeTile> sleepModeTileProvider,
-            Provider<LteTile> lteTileProvider) {
+            Provider<LteTile> lteTileProvider,
+            Provider<SmartChargeTile> smartChargeTileProvider) {
+
         mQsHostLazy = qsHostLazy;
         mWifiTileProvider = wifiTileProvider;
         mBluetoothTileProvider = bluetoothTileProvider;
@@ -249,6 +253,7 @@ public class QSFactoryImpl implements QSFactory {
         mOnTheGoTileProvider = onTheGoTileProvider;
         mSleepModeTileProvider = sleepModeTileProvider;
         mLteTileProvider = lteTileProvider;
+        mSmartChargeTileProvider = smartChargeTileProvider;
     }
 
     public QSTile createTile(String tileSpec) {
@@ -363,6 +368,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mSleepModeTileProvider.get();
             case "lte":
                 return mLteTileProvider.get();
+            case "smart_charge":
+                return mSmartChargeTileProvider.get();
         }
 
         // Custom tiles

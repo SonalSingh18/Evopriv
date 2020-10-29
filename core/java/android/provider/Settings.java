@@ -6781,6 +6781,11 @@ public final class Settings {
         public static final String RETICKER_COLORED = "reticker_colored";
 
         /**
+         * @hide
+         */
+        public static final String QS_SHOW_DRAG_HANDLE = "qs_show_drag_handle";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *

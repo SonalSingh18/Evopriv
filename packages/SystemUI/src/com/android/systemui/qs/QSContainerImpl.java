@@ -54,6 +54,8 @@ public class QSContainerImpl extends FrameLayout implements
     private static final String QS_PANEL_BG_ALPHA =
             "system:" + Settings.System.QS_PANEL_BG_ALPHA;
 
+    public static final String QS_SHOW_DRAG_HANDLE = "qs_show_drag_handle";
+
     private final Point mSizePoint = new Point();
     private static final FloatPropertyCompat<QSContainerImpl> BACKGROUND_BOTTOM =
             new FloatPropertyCompat<QSContainerImpl>("backgroundBottom") {
@@ -94,6 +96,8 @@ public class QSContainerImpl extends FrameLayout implements
     private StatusBarHeaderMachine mStatusBarHeaderMachine;
     private Drawable mCurrentBackground;
     private boolean mLandscape;
+    private boolean mQsDragHandle;
+
     private boolean mImmerseMode;
 
     private int mQsBackgroundAlpha = 255;
@@ -144,7 +148,11 @@ public class QSContainerImpl extends FrameLayout implements
             getContext().getContentResolver().registerContentObserver(Settings.System
                     .getUriFor(Settings.System.DISPLAY_CUTOUT_MODE), false,
                     this, UserHandle.USER_ALL);
+            getContext().getContentResolver().registerContentObserver(Settings.System
+                    .getUriFor( Settings.System.QS_SHOW_DRAG_HANDLE), false,
+                    this, UserHandle.USER_ALL);
         }
+
         @Override
         public void onChange(boolean selfChange) {
             updateSettings();
@@ -154,6 +162,9 @@ public class QSContainerImpl extends FrameLayout implements
     private void updateSettings() {
         mImmerseMode = Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.DISPLAY_CUTOUT_MODE, 0, UserHandle.USER_CURRENT) == 1;
+        mQsDragHandle = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.QS_SHOW_DRAG_HANDLE, 0, UserHandle.USER_CURRENT) == 1;
+        mDragHandle.setVisibility(mQsDragHandle ? View.VISIBLE : View.GONE);
     }
 
     private void setBackgroundBottom(int value) {

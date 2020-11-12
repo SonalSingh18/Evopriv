@@ -6615,6 +6615,10 @@ public final class Settings {
          */
         public static final String CUSTOM_TEXT_CLOCK_FONTS = "custom_text_clock_fonts";
 
+        /** reTicker **/
+        public static final String RETICKER_STATUS = "reticker_status";
+        public static final String RETICKER_COLORED = "reticker_colored";
+
         /**
          * Change font size for the lockscreen text clock widget
          *

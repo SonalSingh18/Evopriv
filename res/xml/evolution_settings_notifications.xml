@@ -80,6 +80,12 @@
             android:summary="@string/force_expanded_notifications_summary"
             android:defaultValue="false" />
 
+       <com.evolution.settings.preference.SystemSettingSwitchPreference 
+            android:key="hide_smart_replies" 
+            android:title="@string/hide_smart_replies_title" 
+            android:summary="@string/hide_smart_replies_summary"
+            android:defaultValue="false"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory

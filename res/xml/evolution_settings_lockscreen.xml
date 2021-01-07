@@ -123,20 +123,6 @@
         android:entryValues="@array/lockscreen_clock_values"
         android:defaultValue="2" />
 
-    <com.evolution.settings.preference.SecureSettingListPreference
-        android:key="lockscreen_date_selection"
-        android:title="@string/lockscreen_date_selection_title"
-        android:dialogTitle="@string/lockscreen_date_dialog_title"
-        android:entries="@array/lockscreen_date_selection_entries"
-        android:entryValues="@array/lockscreen_date_selection_values"
-        android:defaultValue="0" />
-
-    <com.evolution.settings.preference.SecureSettingSwitchPreference
-        android:key="center_text_clock"
-        android:title="@string/center_text_clock_title"
-        android:summary="@string/center_text_clock_summary"
-        android:defaultValue="false" />
-
     <ListPreference
         android:key="lock_clock_fonts"
         android:title="@string/lock_clock_font_title"
@@ -146,6 +132,15 @@
         android:summary="%s"
         android:defaultValue="34"
         android:persistent="false" />
+
+    <com.evolution.settings.preference.CustomSeekBarPreference 
+        android:key="lockclock_font_size"
+        android:title="@string/lockclock_font_size_title"
+        android:max="101"
+        settings:min="65"
+        settings:units="dp"
+        android:persistent="false"
+        android:defaultValue="78" />
 
     <ListPreference
         android:key="custom_text_clock_fonts"
@@ -157,6 +152,29 @@
         android:defaultValue="32"
         android:persistent="false" />
 
+    <com.evolution.settings.preference.CustomSeekBarPreference
+        android:key="custom_text_clock_font_size"
+        android:title="@string/custom_text_clock_font_size_title"
+        android:max="50"
+        settings:min="35"
+        settings:units="dp"
+        android:persistent="false"
+        android:defaultValue="40" />
+
+    <com.evolution.settings.preference.SecureSettingSwitchPreference
+        android:key="center_text_clock"
+        android:title="@string/center_text_clock_title"
+        android:summary="@string/center_text_clock_summary"
+        android:defaultValue="false" />
+
+    <com.evolution.settings.preference.SecureSettingListPreference
+        android:key="lockscreen_date_selection"
+        android:title="@string/lockscreen_date_selection_title"
+        android:dialogTitle="@string/lockscreen_date_dialog_title"
+        android:entries="@array/lockscreen_date_selection_entries"
+        android:entryValues="@array/lockscreen_date_selection_values"
+        android:defaultValue="0" />
+
     <ListPreference
         android:key="lock_date_fonts"
         android:title="@string/lock_date_font_title"
@@ -167,6 +185,15 @@
         android:defaultValue="32"
         android:persistent="false" />
 
+    <com.evolution.settings.preference.CustomSeekBarPreference
+        android:key="lockdate_font_size"
+        android:title="@string/lockdate_font_size_title"
+        android:max="25"
+        settings:min="10"
+        settings:units="dp"
+        android:defaultValue="18"
+        android:persistent="false" />
+
     <ListPreference
         android:key="lock_ownerinfo_fonts"
         android:title="@string/lock_ownerinfo_font_title"
@@ -175,33 +202,6 @@
         android:entryValues="@array/lock_clock_fonts_values"
         android:summary="%s"
         android:defaultValue="0"
-        android:persistent="false" />
-
-    <com.evolution.settings.preference.CustomSeekBarPreference
-        android:key="lockclock_font_size"
-        android:title="@string/lockclock_font_size_title"
-        android:max="101"
-        settings:min="65"
-        settings:units="dp"
-        android:persistent="false"
-        android:defaultValue="78" />
-
-    <com.evolution.settings.preference.CustomSeekBarPreference
-        android:key="custom_text_clock_font_size"
-        android:title="@string/custom_text_clock_font_size_title"
-        android:max="55"
-        settings:min="35"
-        settings:units="dp"
-        android:persistent="false"
-        android:defaultValue="40" />
-
-    <com.evolution.settings.preference.CustomSeekBarPreference
-        android:key="lockdate_font_size"
-        android:title="@string/lockdate_font_size_title"
-        android:max="25"
-        settings:min="10"
-        settings:units="dp"
-        android:defaultValue="18"
         android:persistent="false" />
 
     <com.evolution.settings.preference.CustomSeekBarPreference

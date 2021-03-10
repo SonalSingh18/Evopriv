@@ -17,5 +17,5 @@
  */
 -->
 <resources>
-    <color name="notification_material_background_color">#FF000000</color>
+    <color name="notification_material_background_color">#FF151618</color>
 </resources>

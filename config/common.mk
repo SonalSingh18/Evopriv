@@ -170,3 +170,6 @@ include packages/apps/Plugins/plugins.mk
 USE_DEX2OAT_DEBUG := false
 PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
 PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
+
+# Copy fonts to system
+PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,vendor/evolution/fonts,$(TARGET_COPY_OUT_SYSTEM)/fonts)

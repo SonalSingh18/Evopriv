@@ -490,7 +490,7 @@
     <string name="keywords_applock_settings">applock, applocker, app lock, app locker</string>
 
     <!-- Android 12 DP2 additions -->
-    <string name="advanced_battery_preference_title">View battery usage</string>
+    <!--<string name="advanced_battery_preference_title">View battery usage</string>-->
     <string name="category_name_brightness">Brightness</string>
     <string name="category_name_color">Color</string>
     <string name="category_name_general">General</string>

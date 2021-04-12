@@ -38,6 +38,12 @@
         android:summary="@string/headset_connect_player_summary"
         android:defaultValue="false" />
 
+    <ListPreference
+        android:key="ringtone_focus_mode"
+        android:title="@string/ringtone_focus_mode_title"
+        android:entries="@array/ringtone_focus_mode_entries"
+        android:entryValues="@array/ringtone_focus_mode_values" />
+
     <PreferenceCategory
         android:title="@string/battery_saving">
 
@@ -87,12 +93,6 @@
             android:fragment="com.android.settings.connecteddevice.usb.UsbDefaultFragment"
             android:title="@string/usb_default_config_title"
             android:summary="@string/usb_default_config_summary"/>
-
-        <ListPreference
-            android:key="ringtone_focus_mode"
-            android:title="@string/ringtone_focus_mode_title"
-            android:entries="@array/ringtone_focus_mode_entries"
-            android:entryValues="@array/ringtone_focus_mode_values" />
 
         <Preference
             android:title="@string/radio_info_title"

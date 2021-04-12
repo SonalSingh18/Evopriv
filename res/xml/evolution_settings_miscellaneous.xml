@@ -71,6 +71,13 @@
 
         android:title="@string/battery_saving">
 
+        <!-- Sensor Block -->
+        <Preference
+            android:key="sensor_block_settings"
+            android:title="@string/sensor_block_title"
+            android:summary="@string/sensor_block_summary"
+            android:fragment="com.evolution.settings.fragments.SensorBlockSettings"/>
+
         <Preference
             android:key="suspend_actions"
             android:fragment="com.evolution.settings.fragments.ScreenStateToggles"
@@ -105,13 +112,6 @@
 
     <PreferenceCategory
         android:title="@string/dev_options_title">
-
-        <!-- Sensor Block -->
-        <Preference
-            android:key="sensor_block_settings"
-            android:title="@string/sensor_block_title"
-            android:summary="@string/sensor_block_summary"
-            android:fragment="com.evolution.settings.fragments.SensorBlockSettings"/>
 
         <Preference
             android:key="wakelock_blocker"

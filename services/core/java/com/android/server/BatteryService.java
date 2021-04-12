@@ -1043,7 +1043,7 @@ public final class BatteryService extends SystemService {
 
     private boolean isTurboPower() {
         try {
-            FileReader file = new FileReader("/sys/class/power_supply/battery/charge_rate");
+            FileReader file = new FileReader("/sys/class/power_supply/bms/fastcharge_mode");
             BufferedReader br = new BufferedReader(file);
             String state = br.readLine();
             br.close();

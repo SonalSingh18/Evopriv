@@ -99,6 +99,7 @@ LOCAL_REQUIRED_MODULES := \
 	FontCoolstorySourceOverlay \
 	FontGoogleSansSourceOverlay \
 	FontInterOverlay \
+	FontGoogleSansMediumSourceOverlay \
 	FontLGSmartGothicSourceOverlay \
 	FontLinotteOverlay \
 	FontManropeOverlay \

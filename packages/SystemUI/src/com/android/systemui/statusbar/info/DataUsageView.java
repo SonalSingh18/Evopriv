@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.provider.Settings;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.text.BidiFormatter;
 import android.text.format.Formatter;
@@ -18,6 +19,8 @@ import com.android.systemui.Dependency;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.phone.StatusBar;
 import com.android.systemui.statusbar.policy.NetworkController;
+
+import java.util.List;
 
 public class DataUsageView extends TextView {
 
@@ -60,7 +63,7 @@ public class DataUsageView extends TextView {
                 break;
         }
 
-        setText(formatDataUsage(info.usageLevel));
+        setText(getSlotCarrierName() + ": " + formatDataUsage(info.usageLevel));
     }
 
     private void updateDataUsageImage() {
@@ -89,5 +92,22 @@ public class DataUsageView extends TextView {
         NetworkInfo wifi = mConnectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         NetworkInfo mobile = mConnectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         return wifi.isConnected() || mobile.isConnected();
+    }
+
+    private String getSlotCarrierName() {
+        CharSequence result = "";
+        SubscriptionManager subManager = mContext.getSystemService(SubscriptionManager.class);
+        int subId = subManager.getDefaultDataSubscriptionId();
+        List<SubscriptionInfo> subInfoList =
+                subManager.getActiveSubscriptionInfoList(true);
+        if (subInfoList != null) {
+            for (SubscriptionInfo subInfo : subInfoList) {
+                if (subId == subInfo.getSubscriptionId()) {
+                    result = subInfo.getDisplayName();
+                    break;
+                }
+            }
+        }
+        return result.toString();
     }
 }

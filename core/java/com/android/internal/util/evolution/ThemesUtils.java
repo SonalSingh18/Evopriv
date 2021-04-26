@@ -82,6 +82,20 @@ public class ThemesUtils {
             "com.gnonymous.gvisualmod.sbh_xl", // 3
     };
 
+    // Statusbar Signal icons
+    private static final String[] SIGNAL_BAR = {
+        "org.blissroms.systemui.signalbar_a",
+        "org.blissroms.systemui.signalbar_b",
+        "org.blissroms.systemui.signalbar_c",
+    };
+
+    // Statusbar Wifi icons
+    private static final String[] WIFI_BAR = {
+        "org.blissroms.systemui.wifibar_a",
+        "org.blissroms.systemui.wifibar_b",
+        "org.blissroms.systemui.wifibar_c",
+    };
+
     public static final String NAVBAR_COLOR_PURP = "com.gnonymous.gvisualmod.pgm_purp";
 
     public static final String NAVBAR_COLOR_ORCD = "com.gnonymous.gvisualmod.pgm_orcd";

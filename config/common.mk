@@ -167,6 +167,9 @@ include vendor/evolution/config/ota.mk
 # Pixel Style
 include vendor/pixelstyle/config.mk
 
+# Includes icon packs/shapes
+include vendor/evolution/icons/icons.mk
+
 # Plugins
 include packages/apps/Plugins/plugins.mk
 

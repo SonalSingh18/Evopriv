@@ -101,7 +101,7 @@
     <color name="homepage_evolution_background">#0060FF</color>
 
     <color name="contextual_card_stroke_color">#1f000000</color>
-    <color name="contextual_card_dismissal_background">#f1f3f4</color>
+    <color name="contextual_card_dismissal_background">@*android:color/material_grey_100</color>
     <color name="contextual_card_background">@*android:color/background_device_default_light</color>
     <!-- End of dashboard/homepage icon background colors -->
 
@@ -142,7 +142,7 @@
     <!-- End of QR code scanner colors -->
 
     <!-- Search bar background color -->
-    <color name="search_bar_background">@*android:color/white</color>
+    <color name="search_bar_background">@*android:color/primary_device_default_settings_light</color>
 
     <!-- Dialog background color -->
     <color name="dialog_background">@*android:color/background_device_default_light</color>

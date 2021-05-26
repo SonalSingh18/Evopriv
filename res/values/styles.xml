@@ -307,9 +307,9 @@
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 
-    <style name="TextAppearance.SearchBar" parent="@style/TextAppearance">
+    <style name="TextAppearance.SearchBar"
+           parent="@*android:style/TextAppearance.DeviceDefault.Widget.Toolbar.Subtitle">
         <item name="android:textSize">@dimen/search_bar_text_size</item>
-        <item name="android:textColor">?android:textColorTertiary</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:singleLine">true</item>
         <item name="android:fontFamily">@*android:string/config_headlineFontFamily</item>
@@ -483,9 +483,9 @@
     </style>
 
     <style name="SearchBarStyle">
-        <item name="cardCornerRadius">34dp</item>
+        <item name="cardCornerRadius">38dp</item>
         <item name="enforceMaterialTheme">true</item>
-        <item name="cardElevation">0dp</item>
+        <item name="cardElevation">3dp</item>
         <item name="shapeAppearance">@null</item>
     </style>
 
@@ -584,10 +584,10 @@
         <item name="progressBarEndPadding">16dp</item>
     </style>
 
-    <style name="SliceRow.Slider.LargeIcon" parent="@style/SliceRow.Slider">
+    <style name="SliceRow.Slider.LargeIcon">
         <!-- 10dp start padding for the start icon -->
         <item name="titleItemStartPadding">10dp</item>
-        <item name="iconSize">36dp</item>
+        <item name="iconSize">12dp</item>
         <!-- RecycleView item animator -->
         <item name="disableRecyclerViewItemAnimator">true</item>
     </style>
@@ -739,7 +739,7 @@
         <item name="android:gravity">center</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
-        <item name="android:fontFamily">@*android:string/config_headlineFontFamilyMedium</item>
+        <item name="android:fontFamily">google-sans-medium</item>
         <item name="android:paddingTop">36dp</item>
         <item name="android:paddingBottom">16dp</item>
     </style>
@@ -750,7 +750,7 @@
         <item name="android:layout_marginBottom">36dp</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
-        <item name="android:fontFamily">@*android:string/config_bodyFontFamily</item>
+        <item name="android:fontFamily">sans-serif</item>
         <item name="android:gravity">start</item>
     </style>
 
@@ -766,7 +766,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
-        <item name="android:fontFamily">@*android:string/config_bodyFontFamily</item>
+        <item name="android:fontFamily">sans-serif</item>
         <item name="android:gravity">start</item>
     </style>
 
@@ -775,7 +775,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">?android:attr/textColorSecondary</item>
-        <item name="android:fontFamily">@*android:string/config_bodyFontFamily</item>
+        <item name="android:fontFamily">sans-serif</item>
         <item name="android:gravity">start</item>
     </style>
 

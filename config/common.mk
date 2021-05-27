@@ -129,6 +129,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     media.recorder.show_manufacturer_and_model=true
 
+# Prebuilt apps
+PRODUCT_PACKAGES += \
+    GalleryGoPrebuilt \
+    MetroMusicPlayer \
+    ViaBrowser
+
 # Face Unlock
 TARGET_FACE_UNLOCK_SUPPORTED ?= true
 ifeq ($(TARGET_FACE_UNLOCK_SUPPORTED),true)

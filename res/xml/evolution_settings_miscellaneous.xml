@@ -83,6 +83,12 @@
 
         android:title="@string/battery_saving">
 
+        <!-- Sleep Mode -->
+        <Preference
+            android:key="sleep_mode"
+            android:title="@string/sleep_mode_title"
+            android:fragment="com.evolution.settings.fragments.SleepMode" />
+
         <!-- Sensor Block -->
         <Preference
             android:key="sensor_block_settings"

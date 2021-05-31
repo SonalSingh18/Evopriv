@@ -166,6 +166,7 @@ import com.android.settings.wifi.tether.WifiTetherSettings;
 import com.android.settings.livedisplay.LiveDisplaySettings;
 
 import com.evolution.settings.EvolutionSettings;
+import com.evolution.settings.fragments.SleepMode;
 
 public class SettingsGateway {
 
@@ -320,6 +321,7 @@ public class SettingsGateway {
             EvolutionSettings.class.getName(),
             RunningServices.class.getName(),
             LiveDisplaySettings.class.getName(),
+            SleepMode.class.getName(),
     };
 
     public static final String[] SETTINGS_FOR_RESTRICTED = {
@@ -361,5 +363,6 @@ public class SettingsGateway {
             UserBackupSettingsActivity.class.getName(),
             Settings.EvolutionSettingsActivity.class.getName(),
             Settings.DevRunningServicesActivity.class.getName(),
+            Settings.SleepModeActivity.class.getName(),
     };
 }

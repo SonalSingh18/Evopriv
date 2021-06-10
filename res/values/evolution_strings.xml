@@ -740,6 +740,7 @@
     <string name="clock_show_status_area_summary">Show the extra row of info under the lock screen clock (SysUI restart may be required)</string>
     <string name="lock_screen_custom_clock_face_category">Lock screen Clock</string>
     <string name="lock_screen_custom_clock_face_title">Lock screen clock style</string>
+    <string name="lock_screen_custom_clock_face_summary">Set custom lock screen clock style</string>
     <string name="lock_screen_custom_clock_face_default_bold">Default (Bold)</string>
     <string name="lock_screen_custom_clock_face_alt_typographic">Typographic (New)</string>
     <string name="lock_screen_custom_clock_face_analog">Analog</string>

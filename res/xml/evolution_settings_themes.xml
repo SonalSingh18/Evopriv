@@ -112,12 +112,11 @@
     <PreferenceCategory 
         android:title="@string/category_name_lock_display">
 
-        <ListPreference
-            android:key="lock_screen_custom_clock_face"
-            android:summary="%s"
+        <Preference
+            android:key="lockscreen_clock"
             android:title="@string/lock_screen_custom_clock_face_title"
-            android:entries="@array/lock_screen_custom_clock_face_entries"
-            android:entryValues="@array/lock_screen_custom_clock_face_values" />
+            android:summary="@string/lock_screen_custom_clock_face_summary"
+            android:fragment="com.evolution.settings.fragments.LockscreenClock" />
 
         <com.evolution.settings.preference.SystemSettingSwitchPreference
             android:key="clock_show_status_area"

@@ -64,6 +64,14 @@
             android:summary="@string/corners_summary"
             android:fragment="com.evolution.settings.fragments.RoundedCorners" />
 
+        <ListPreference
+            android:key="android.theme.customization.wifi_icon"
+            android:title="@string/custom_wifi_bar_title"/>
+
+        <ListPreference
+            android:key="android.theme.customization.signal_icon"
+            android:title="@string/custom_signal_bar_title"/>
+
         <!-- Settings dashboard icon style -->
         <com.evolution.settings.preference.SystemSettingIntListPreference
             android:key="theming_settings_dashboard_icons"

@@ -21,7 +21,6 @@ import android.app.NotificationManager;
 import android.app.Person;
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.database.ContentObserver;
 import android.hardware.camera2.CameraManager;
 import android.media.AudioAttributes;
@@ -217,8 +216,6 @@ public class Ringer {
 
     private CompletableFuture<Void> mVibrateFuture = CompletableFuture.completedFuture(null);
 
-    private TorchToggler torchToggler;
-
     private InCallTonePlayer mCallWaitingPlayer;
     private RingtoneFactory mRingtoneFactory;
 
@@ -234,8 +231,6 @@ public class Ringer {
      * Used to track the status of {@link #mVibrator} in the case of simultaneous incoming calls.
      */
     private boolean mIsVibrating = false;
-
-    private int torchMode;
 
     /** Initializes the Ringer. */
     @VisibleForTesting
@@ -259,7 +254,6 @@ public class Ringer {
         mRingtoneFactory = ringtoneFactory;
         mInCallController = inCallController;
         mVibrationEffectProxy = vibrationEffectProxy;
-        torchToggler = new TorchToggler(context);
         mUseSimplePattern = mContext.getResources().getBoolean(R.bool.use_simple_vibration_pattern);
         mVibrationPattern = Settings.System.getIntForUser(mContext.getContentResolver(),
             Settings.System.RINGTONE_VIBRATION_PATTERN, 0, UserHandle.USER_CURRENT);
@@ -346,16 +340,6 @@ public class Ringer {
             if (mBlockOnRingingFuture != null) {
                 mBlockOnRingingFuture.complete(null);
             }
-       	boolean dndMode = !isRingerAudible;
-        torchMode = Settings.System.getIntForUser(mContext.getContentResolver(),
-                 Settings.System.FLASHLIGHT_ON_CALL, 0, UserHandle.USER_CURRENT);
-
-        boolean shouldFlash = (torchMode == 1 && !dndMode) ||
-                              (torchMode == 2 && dndMode)  ||
-                               torchMode == 3;
-        if (shouldFlash) {
-            blinkFlashlight();
-        }
             return shouldAcquireAudioFocus;
         }
 
@@ -501,11 +485,6 @@ public class Ringer {
         return effect;
     }
 
-    private void blinkFlashlight() {
-        torchToggler = new TorchToggler(mContext);
-        torchToggler.execute();
-    }
-
     public void startCallWaiting(Call call) {
         startCallWaiting(call, null);
     }
@@ -553,7 +532,6 @@ public class Ringer {
 
         mRingtonePlayer.stop();
 
-        torchToggler.stop();
         // If we haven't started vibrating because we were waiting for the haptics info, cancel
         // it and don't vibrate at all.
         if (mVibrateFuture != null) {
@@ -707,48 +685,6 @@ public class Ringer {
         @Override
         public void onChange(boolean SelfChange) {
             updateVibrationPattern();
-        }
-    }
-
-    private class TorchToggler extends AsyncTask {
-
-        private boolean shouldStop = false;
-        private CameraManager cameraManager;
-        private int duration = 400;
-        private boolean hasFlash = true;
-        private Context context;
-
-        public TorchToggler(Context ctx) {
-            this.context = ctx;
-            init();
-        }
-
-        private void init() {
-            cameraManager = (CameraManager) context.getSystemService(Context.CAMERA_SERVICE);
-            hasFlash = context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
-        }
-
-        void stop() {
-            shouldStop = true;
-        }
-
-        @Override
-        protected Object doInBackground(Object[] objects) {
-            if (hasFlash) {
-                try {
-                    String cameraId = cameraManager.getCameraIdList()[0];
-                    while (!shouldStop) {
-                        cameraManager.setTorchMode(cameraId, true);
-                        Thread.sleep(duration);
-
-                        cameraManager.setTorchMode(cameraId, false);
-                        Thread.sleep(duration);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            return null;
         }
     }
 }

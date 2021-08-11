@@ -223,6 +223,7 @@ public class SystemSettingsValidators {
         VALIDATORS.put(System.CENTER_NOTIFICATION_HEADERS, BOOLEAN_VALIDATOR);
         VALIDATORS.put(System.RINGTONE_VIBRATION_PATTERN, new InclusiveIntegerRangeValidator(0, 5));
         VALIDATORS.put(System.CUSTOM_RINGTONE_VIBRATION_PATTERN, ANY_STRING_VALIDATOR);
+        VALIDATORS.put(System.AMBIENT_SWIPE, BOOLEAN_VALIDATOR);
         VALIDATORS.put(
                 System.COLOR_BUCKET_OVERLAY,
                 new Validator() {

@@ -5527,6 +5527,12 @@ public final class Settings {
         public static final String DISPLAY_TEMPERATURE_NIGHT = "display_temperature_night";
 
         /**
+         * Enable\Disable swipe up or down gesture on ambient display like OOS
+         * @hide
+         */
+        public static final String AMBIENT_SWIPE = "ambient_swipe";
+
+        /**
          * Display color temperature adjustment mode, one of DAY (default), NIGHT, or AUTO.
          */
         public static final String DISPLAY_TEMPERATURE_MODE = "display_temperature_mode";
@@ -6901,6 +6907,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BATTERY_LIGHT_MEDIUM_COLOR);
             PRIVATE_SETTINGS.add(BATTERY_LIGHT_FULL_COLOR);
             PRIVATE_SETTINGS.add(BATTERY_LIGHT_REALLYFULL_COLOR);
+            PRIVATE_SETTINGS.add(AMBIENT_SWIPE);
             PRIVATE_SETTINGS.add(HEADS_UP_STOPLIST_VALUES);
             PRIVATE_SETTINGS.add(HEADS_UP_BLACKLIST_VALUES);
             PRIVATE_SETTINGS.add(VOLUME_PANEL_ON_LEFT);

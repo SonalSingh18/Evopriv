@@ -43,6 +43,12 @@
         android:summary="@string/fp_unlock_keystore_summary"
         android:defaultValue="false" />
 
+    <com.evolution.settings.preference.SystemSettingSwitchPreference
+        android:key="ambient_swipe"
+        android:title="@string/ambient_swipe_title"
+        android:summary="@string/ambient_swipe_summary"
+        android:defaultValue="true" />
+
     <!-- FOD customization options -->
     <PreferenceCategory
         android:key="fod_icon_picker"

@@ -122,14 +122,14 @@
     <PreferenceCategory
         android:title="@string/qs_panel_category_title">
 
-        <!-- QS system info -->
+        <!-- QS system info
         <com.evolution.settings.preference.SystemSettingListPreference 
             android:key="qs_system_info"
             android:title="@string/qs_system_info_title"
             android:entries="@array/qs_system_info_entries"
             android:entryValues="@array/qs_system_info_values"
             android:defaultValue="0"
-            android:summary="%s" />
+            android:summary="%s" /> -->
 
         <!-- QS panel data uasge -->
         <com.evolution.settings.preference.SystemSettingListPreference

@@ -278,7 +278,7 @@ public class PowerUsageSummary extends PowerUsageBase implements OnLongClickList
 
         // Check availability of Adaptive Charging
         mAdaptiveChargingCat = (PreferenceCategory) findPreference(KEY_ADAPTIVE_CHARGING_CATEGORY);
-        if (!getResources().getBoolean(R.bool.config_supportAdaptiveCharging)) {
+        if (!getResources().getBoolean(com.android.internal.R.bool.config_supportAdaptiveCharging)) {
             getPreferenceScreen().removePreference(mAdaptiveChargingCat);
         }
     }
